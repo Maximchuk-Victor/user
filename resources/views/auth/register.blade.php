@@ -26,20 +26,6 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="birth_date" class="col-md-4 col-form-label text-md-right">{{ __('Birth date') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="birth_date" type="date" class="form-control{{ $errors->has('birth_date') ? ' is-invalid' : '' }}" name="birth_date" value="{{ old('birth_date') }}">
-
-                                @if ($errors->has('birth-date'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('birth_date') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">

@@ -29,5 +29,19 @@ class UserController extends Controller
 
         return view('profile', ['profile' => $profile]);
     }
+    
+    public function create(User $user, Request $request)
+    {
+//        dd($request->all());
+        if($request->file('avatare')->isValid()){ 
+            $file = $request->file('avatare');
+        } else {
+            $file = null;
+        }
+        
+        $profile = $user->createUser($request->all(), $file);
+      
+        return view('profile', ['profile' => $profile]);
+    }
 
 }

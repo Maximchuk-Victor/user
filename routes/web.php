@@ -19,3 +19,5 @@ Auth::routes();
 
 
 Route::get('/user', 'UserController@profile')->middleware('auth');
+
+Route::post('/user/create', 'UserController@create')->middleware('auth');

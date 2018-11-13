@@ -2,14 +2,30 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Storage;
 
 class User
 {
     
     public function getUser()
     {
+        return \Auth::user();
+    }
+    
+    public function createUser($data, $avatare)
+    {
+        //dd($avatare->name());
         $user = \Auth::user();
-        $user->birth_date = \Carbon\Carbon::createFromFormat('Y-m-d', $user->birth_date)->format('d.m.Y');
-        return $user;
+        if($avatare !== null){
+            $st = Storage::disk('public')->put('/avatars', $avatare);
+            $url = Storage::disk('public')->url($st);
+            Storage::disk('public')->setVisibility('/avatars', 'public');
+        }
+        
+        $user->birth_date = $data['birth_date'];
+        $user->avatare = $url;
+        $user->save();
+        
+        return $this->getUser();
     }
 }
